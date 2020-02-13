@@ -31,11 +31,11 @@ app.get('/songs', (req, res) => { // ideally should be keyed on a user or anon
 
 app.get('/songs/:id', (req, res) => { // utilizes the _id field native to each mongo doc, but could also be a number
   const { id } = req.params;
-  db.getSong(id, (err, data) => {
+  db.getSong(id, (err, song) => {
     if (err) {
       res.sendStatus(500);
     } else {
-      res.send(data);
+      res.send(song);
     }
   });
 });
@@ -47,6 +47,29 @@ app.post('/songs', (req, res) => {
       res.sendStatus(500);
     } else {
       res.send(id);
+    }
+  });
+});
+
+app.put('/songs/:id', (req, res) => {
+  const { id } = req.params;
+  const songData = req.body;
+  db.updateSong(id, songData, (err) => {
+    if (err) {
+      res.sendStatus(500);
+    } else {
+      res.send();
+    }
+  });
+});
+
+app.delete('/songs/:id', (req, res) => {
+  const { id } = req.params;
+  db.deleteSong(id, (err, song) => {
+    if (err) {
+      res.sendStatus(500);
+    } else {
+      res.send(song);
     }
   });
 });

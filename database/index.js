@@ -19,16 +19,6 @@ const songSchema = mongoose.Schema({
 
 const Song = mongoose.model('Song', songSchema);
 
-const getInitial = (cb) => {
-  Song.find({}, null, { limit: 100 }, (error, docs) => {
-    if (error) {
-      console.log(error);
-    } else {
-      cb(docs);
-    }
-  });
-};
-
 module.exports = {
   getInitial: (cb) => {
     Song.find({}, null, { limit: 100 }, (error, docs) => {
@@ -58,12 +48,30 @@ module.exports = {
     });
   },
   postSong: (song, callback) => {
-    Song.create(song, (err, song) => {
-      const { _id } = song;
+    Song.create(song, (err, res) => {
+      const { _id } = res;
       if (err) {
         callback(err);
       } else {
         callback(null, _id);
+      }
+    });
+  },
+  updateSong: (id, songData, callback) => {
+    Song.findByIdAndUpdate(id, songData, (err) => { // data passed to cb could include the pre-modified doc
+      if (err) {
+        callback(err);
+      } else {
+        callback(null);
+      }
+    });
+  },
+  deleteSong: (id, callback) => {
+    Song.findByIdAndDelete(id, (err, docs) => {
+      if (err) {
+        callback(err);
+      } else {
+        callback(null, docs);
       }
     });
   },
