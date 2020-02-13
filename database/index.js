@@ -29,4 +29,42 @@ const getInitial = (cb) => {
   });
 };
 
-module.exports.getInitial = getInitial;
+module.exports = {
+  getInitial: (cb) => {
+    Song.find({}, null, { limit: 100 }, (error, docs) => {
+      if (error) {
+        console.log(error);
+      } else {
+        cb(docs);
+      }
+    });
+  },
+  getSongs: (callback) => {
+    Song.find({}, null, { limit: 100 }, (err, docs) => {
+      if (err) {
+        callback(err);
+      } else {
+        callback(null, docs);
+      }
+    });
+  },
+  getSong: (id, callback) => {
+    Song.findById(id, null, null, (err, docs) => {
+      if (err) {
+        callback(err);
+      } else {
+        callback(null, docs);
+      }
+    });
+  },
+  postSong: (song, callback) => {
+    Song.create(song, (err, song) => {
+      const { _id } = song;
+      if (err) {
+        callback(err);
+      } else {
+        callback(null, _id);
+      }
+    });
+  },
+};
