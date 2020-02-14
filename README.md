@@ -9,13 +9,11 @@ Top navigation bar and bottom audio player
 
 retrieves first 100 songs
 
-**GET /songs/:id**
+request body: n/a
 
-retrieves song that matches id param
+response body: array of song objects
 
-**POST /songs/**
-
-body: JSON object representing song shape
+song object shape:
 
 {
   title: String,
@@ -25,21 +23,44 @@ body: JSON object representing song shape
   song_image: String,
 }
 
+**GET /songs/:id**
+
+retrieves song that matches id param
+
+request body: n/a
+
+response body: song object
+
+**POST /songs**
+
 saves song info to the database
 
-returns the id of the created song
+request header: content-type: application/json
 
+request body: JSON object representing song shape
 
-**UPDATE /songs/:id**
+{
+  title: String,
+  artist: String,
+  length: Number,
+  song_url: String,
+  song_image: String,
+}
 
-body: JSON object representing new properties of the song
+response body: database id of the created record
+
+**PUT /songs/:id**
+
+updates properties of the song record specified by id param
+
+request body: JSON object representing properties of song to modify
 
 all properties are optional
-
 
 **DELETE /songs/:id**
 
 deletes song that matches id param
 
-returns the song object that was deleted
+request body: n/a
 
+response body: song object that was deleted

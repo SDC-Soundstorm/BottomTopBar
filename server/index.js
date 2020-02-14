@@ -19,7 +19,8 @@ app.get('/initial', (req, res) => {
   db.getInitial(callback);
 });
 
-app.get('/songs', (req, res) => { // ideally should be keyed on a user or anon
+// ideally should be keyed on a user or anon
+app.get('/songs', (req, res) => {
   db.getSongs((err, data) => {
     if (err) {
       res.sendStatus(500);
@@ -29,7 +30,8 @@ app.get('/songs', (req, res) => { // ideally should be keyed on a user or anon
   });
 });
 
-app.get('/songs/:id', (req, res) => { // utilizes the _id field native to each mongo doc, but could also be a number
+// utilizes the _id field native to each mongo doc, but could also be a number
+app.get('/songs/:id', (req, res) => {
   const { id } = req.params;
   db.getSong(id, (err, song) => {
     if (err) {

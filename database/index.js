@@ -48,8 +48,8 @@ module.exports = {
     });
   },
   postSong: (song, callback) => {
-    Song.create(song, (err, res) => {
-      const { _id } = res;
+    Song.create(song, (err, docs) => {
+      const { _id } = docs;
       if (err) {
         callback(err);
       } else {
@@ -58,7 +58,8 @@ module.exports = {
     });
   },
   updateSong: (id, songData, callback) => {
-    Song.findByIdAndUpdate(id, songData, (err) => { // data passed to cb could include the pre-modified doc
+    // data passed to cb could include the pre-modified doc
+    Song.findByIdAndUpdate(id, songData, (err) => {
       if (err) {
         callback(err);
       } else {
