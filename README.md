@@ -89,6 +89,21 @@ response body: song object that was deleted
 ```
 ### /playlists
 
+**GET /playlists/genre**
+
+retrieves all curated genre playlists
+
+request body: n/a
+
+response body: array of playlist objects
+
+```
+{
+  id: UUID,
+  name: String
+}
+```
+
 **GET /playlists/genre/:genrename**
 
 retrieves curated array of songs that match the genre param
