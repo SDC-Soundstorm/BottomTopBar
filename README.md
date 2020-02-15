@@ -75,21 +75,11 @@ deletes song that matches id param
 
 request body: n/a
 
-response body: song object that was deleted
+response body: n/a
 
-```
-{
-  title: String,
-  artist: String,
-  album:: String
-  length: Number,
-  song_url: String,
-  song_image: String,
-}
-```
 ### /playlists
 
-**GET /playlists/genre**
+**GET /playlists/genres**
 
 retrieves all curated genre playlists
 
@@ -98,74 +88,28 @@ request body: n/a
 response body: array of playlist objects
 
 ```
+[
+  <playlistObj>
+]
+
 {
   id: UUID,
   name: String
 }
 ```
 
-**GET /playlists/genre/:genrename**
+**GET /playlists/:id**
 
-retrieves curated array of songs that match the genre param
-
-request body: n/a
-
-response body: object with nested array of song objects
-
-```
-{
-  id: UUID,
-  [
-    id: UUID,
-    title: String,
-    artist: String,
-    album:: String,
-    length: Number,
-    song_url: String,
-    song_image: String,
-  ]
-}
-```
-
-**GET /playlists/album/:albumname/artist/:artistid**
-
-retrieves array of songs that match the album name and artist id params (assumes one artist can have one album of a specific name)
+retrieves array of songs that match playlist id param
 
 request body: n/a
 
 response body: array of song objects
 
 ```
-{
-  id: UUID,
-  [
-    id: UUID,
-    title: String,
-    artist: String,
-    album:: String,
-    length: Number,
-    song_url: String,
-    song_image: String,
-  ]
-}
-```
-
-**POST /playlists**
-
-posts a new playlist of either type genre or album, depending on shape of the data
-
-request header: `content-type: application/json`
-
-request body: playlist data including array of songs
-
-```
-{
-  name: String,
-  artistId: UUID (optional),
-  songs: [
-    songId: UUID
-  ]
-}
+[
+  <songObj>
+]
 
 {
   id: UUID,
@@ -178,25 +122,41 @@ request body: playlist data including array of songs
 }
 ```
 
-response body: playlist id of database record created
+**GET /playlists/song/:id**
 
-**DELETE /playlists/:id**
-
-deletes playlist matching the id param
+retrieves array of songs from the album to which the song id param belongs
 
 request body: n/a
 
-response body: array of songIds in the deleted playlist
+response body: array of song objects
 
 ```
 [
-  songId: UUID,
+  <songObj>
 ]
+
+{
+  id: UUID,
+  title: String,
+  artist: String,
+  album:: String
+  length: Number,
+  song_url: String,
+  song_image: String,
+}
 ```
 
-**PATCH /playlists/:playlistid/song/:songid**
+**POST /playlists/:playlistid/song/:songid**
 
-adds or removes a song in the playlist based on id params
+adds a song in the playlist based on id params
+
+request body: n/a
+
+response body: n/a
+
+**DELETE /playlists/:playlistid/song/:songid**
+
+removes a song in the playlist based on id params
 
 request body: n/a
 
@@ -257,10 +217,4 @@ deletes artist based on id param
 
 request body: n/a
 
-response body: object representing artist data that was deleted
-
-```
-{
-  name: String
-}
-```
+response body: n/a
