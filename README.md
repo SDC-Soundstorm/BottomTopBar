@@ -21,7 +21,7 @@ response body: song object
   title: String,
   artist: String,
   album:: String
-  length: Number,
+  duration: Number,
   song_url: String,
   song_image: String,
 }
@@ -40,7 +40,7 @@ request body: JSON object representing song shape
   title: String,
   artist: String,
   album:: String
-  length: Number,
+  duration: Number,
   song_url: String,
   song_image: String,
 }
@@ -61,7 +61,7 @@ request body: JSON object representing properties of song to modify
   title: String,
   artist: String,
   album:: String
-  length: Number,
+  duration: Number,
   song_url: String,
   song_image: String,
 }
@@ -116,7 +116,7 @@ response body: array of song objects
   title: String,
   artist: String,
   album:: String
-  length: Number,
+  duration: Number,
   song_url: String,
   song_image: String,
 }
@@ -140,7 +140,7 @@ response body: array of song objects
   title: String,
   artist: String,
   album:: String
-  length: Number,
+  duration: Number,
   song_url: String,
   song_image: String,
 }
