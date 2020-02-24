@@ -6,4 +6,6 @@ package-lock.json
 config.js
 public/bundle.js
 coverage/
-database/postgresql/artistsTable.csv
+database/postgresql/data/artistsTable.csv
+database/postgresql/data/playlistsTable.csv
+database/postgresql/data/songsTable.csv
