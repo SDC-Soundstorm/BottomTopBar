@@ -59,8 +59,7 @@ SELECT * FROM playlists WHERE type IS NOT NULL;
 CREATE INDEX ON songs (album_id);
 SELECT * FROM songs WHERE album_id=?;
 -- GET playlists/song/:id
-SELECT * FROM songs WHERE album_id=?;
-
+SELECT * FROM songs WHERE album_id=(SELECT album_id FROM songs WHERE id=?);
 
 -- plan for getting album a song belongs to:
 -- 1. use songs_playlists to get all playlists a song is associated with
