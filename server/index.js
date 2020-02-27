@@ -4,6 +4,7 @@ const compression = require('compression');
 const path = require('path');
 
 const pool = require('../database/postgresql/index.js');
+// const redis = require('./redis.js');
 
 const app = express();
 const PORT = 3000;
@@ -42,4 +43,24 @@ app.get('/playlists/song/:id', (req, res) => {
       res.send(data);
     }
   });
+  // redis.get(id, (err, cache) => {
+  //   if (cache !== null) {
+  //     res.send(JSON.parse(cache));
+  //   } else {
+  //     pool.getPlaylist(id, (err, data) => {
+  //       if (err) {
+  //         res.sendStatus(404);
+  //       } else {
+  //         res.send(data);
+  //         redis.set(id, JSON.stringify(data), (err, info) => {
+  //           if (err) {
+  //             // if it fails to insert, i assume we just skip and let it happen on next?
+  //           } else {
+  //             // maybe do something here on successs?
+  //           }
+  //         });
+  //       }
+  //     });
+  //   }
+  // });
 });

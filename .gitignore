@@ -9,3 +9,5 @@ coverage/
 database/postgresql/data/artistsTable.csv
 database/postgresql/data/playlistsTable.csv
 database/postgresql/data/songsTable.csv
+dump.rdb
+newrelic_agent.log

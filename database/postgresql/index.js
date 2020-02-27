@@ -21,7 +21,7 @@ module.exports = {
   },
   postSong(song, callback) {
     const songsQuery = 'INSERT INTO songs (title, album_id, artist_id, duration, song_url, song_image) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id';
-    const {title, albumId, artistId, duration, songUrl, songImage } = song;
+    const { title, albumId, artistId, duration, songUrl, songImage } = song;
     const values = [title, albumId, artistId, duration, songUrl, songImage];
     pool.query(songsQuery, values)
       .then((res) => {

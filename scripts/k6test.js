@@ -2,7 +2,7 @@ import http from 'k6/http';
 import { check, sleep } from 'k6';
 // import e from 'express';
 
-export let options = {
+export const options = {
   vus: 600,
   duration: '300s',
 };
@@ -42,7 +42,7 @@ export default function () {
   }
   counter += 1;
   // random = Math.ceil(Math.random() * 10000000);
-  // const res = http.get(`${url}${getPath}${random}`);
+  // const res = http.get(`${url}${getPath}${9999999}`);
   // check(res, {
   //   'GET status was 200': r => r.status == 200,
   //   'GET transaction time OK': r => r.timings.duration < 200,
