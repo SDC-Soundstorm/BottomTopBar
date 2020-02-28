@@ -64,3 +64,14 @@ app.get('/playlists/song/:id', (req, res) => {
   //   }
   // });
 });
+
+app.get('/test', (req, res) => {
+  pool.test((err, data) => {
+    if (err) {
+      console.log('remote database connection error:', err);
+    } else {
+      console.log('remote database query result:', data);
+    }
+  });
+  res.send();
+});

@@ -1,10 +1,10 @@
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  user: 'tyler',
-  host: 'localhost',
+  user: 'postgres',
+  host: '54.184.21.160',
   database: 'soundstorm',
-  password: null,
+  password: 'unbreakablepassword',
   port: 5432,
 });
 
@@ -30,6 +30,17 @@ module.exports = {
       })
       .catch((err) => {
         // console.log('error occurred during POST query', err.stack);
+        callback(err);
+      });
+  },
+  test(callback) {
+    const math = 'SELECT 1+1';
+    pool.query(math)
+      .then((res) => {
+        const data = res.rows[0];
+        callback(null, data);
+      })
+      .catch((err) => {
         callback(err);
       });
   },
